@@ -11,7 +11,7 @@ const sequelize = new Sequelize('todoapp', 'caleb', 'caleb', {
   },
 
   // SQLite only
-  storage: '/Users/calebanderson/Desktop/tristynDemo/db/todoapp.sqlite'
+  storage: __dirname + '/db/todoapp.sqlite'
 });
 
 

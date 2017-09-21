@@ -34,13 +34,29 @@ app.post('/todos', function(req, res) {
     })
 })
 
+app.put('/todos/:id', function(req, res) {
+  console.log('this is our request body: ', req.body)
+  var query = { where: { id: req.params.id } }
+  
+  var updatedTodo = {
+    text: req.body.text,
+    completed: req.body.completed
+  }
+
+  TodoModel.update(updatedTodo, query)
+    .then((report) => {
+      console.log(report)
+      res.send('Todo updated! :)')
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
+    })
+})
+
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
-
-
-
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
